@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS HADA 肌 — Catálogo de Rituais &amp; Protocolos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --washi:#F6F0E6;
+    --washi-2:#EFE6D6;
+    --sumi:#2B2620;
+    --sakura:#C48F92;
+    --matcha:#7C8B6C;
+    --kin:#A6813F;
+    --sora:#DCE2DA;
+    --serif: 'Cormorant Garamond', 'Noto Serif CJK JP', 'Hiragino Mincho ProN', serif;
+    --sans: 'Jost', 'Poppins', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:900px;
+    margin:0 auto;
+    padding:7vw 8vw;
+    position:relative;
+    min-height:auto;
+  }
+  .page + .page{ border-top:1px solid rgba(43,38,32,0.08); }
+
+  /* Kanji seal — signature element */
+  .seal{
+    position:absolute;
+    width:64px; height:64px;
+    border:1px solid var(--kin);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif);
+    font-size:26px;
+    color:var(--kin);
+    opacity:0.55;
+    top:7vw; right:8vw;
+  }
+  .seal.bottom{ top:auto; bottom:7vw; left:8vw; right:auto; }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--kin);
+    margin-bottom:18px;
+    font-weight:500;
+  }
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; color:var(--sumi); }
+  .hr{
+    width:48px; height:1px; background:var(--kin); border:none;
+    margin:22px 0;
+  }
+  .hr.center{ margin:26px auto; }
+
+  p.lede{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:400;
+    font-style:italic;
+    line-height:1.5;
+    color:var(--sumi);
+    max-width:640px;
+  }
+  p.body-text{
+    font-size:15.5px;
+    font-weight:300;
+    max-width:600px;
+    color:#4a4237;
+  }
+  .jp{
+    font-family:var(--serif);
+    color:var(--kin);
+    font-style:italic;
+  }
+
+  /* ---------- COVER ---------- */
+  .cover{
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(166,129,63,0.08), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(124,139,108,0.10), transparent 45%),
+      var(--washi);
+  }
+  .cover .kanji-big{
+    font-family:var(--serif);
+    font-size:120px;
+    line-height:1;
+    color:var(--sumi);
+    margin-bottom:6px;
+  }
+  .cover .brand{
+    font-family:var(--serif);
+    font-size:56px;
+    letter-spacing:0.08em;
+    margin-top:6px;
+  }
+  .cover .brand small{ font-size:0.5em; letter-spacing:0.3em; color:var(--kin); display:block; font-family:var(--sans); font-weight:500; margin-top:14px;}
+  .cover .sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:24px;
+    color:var(--matcha);
+    margin-top:18px;
+  }
+  .cover .byline{
+    margin-top:40px;
+    font-size:13px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--sumi);
+  }
+  .cover .byline span{ display:block; font-size:11px; letter-spacing:0.12em; color:#8a8072; margin-top:6px; text-transform:none;}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{ text-align:left; padding-top:5vw; }
+  .section-head h2{ font-size:40px; max-width:640px; }
+
+  /* ---------- FEATURE (single ritual) ---------- */
+  .feature{ padding-top:4vw; }
+  .feature .kicker{
+    font-family:var(--serif); font-style:italic; color:var(--kin); font-size:15px; margin-bottom:6px;
+  }
+  .feature h2{ font-size:44px; }
+  .feature h3{ font-family:var(--sans); font-weight:400; font-size:15px; letter-spacing:0.05em; color:#6b6255; margin-top:10px; text-transform:uppercase;}
+  .feature .origin-note{
+    margin-top:24px;
+    padding:16px 20px;
+    background:var(--washi-2);
+    border-left:2px solid var(--kin);
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:15px;
+    color:#5a5245;
+    max-width:560px;
+  }
+
+  /* ---------- GRID CARDS ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px 48px;
+    margin-top:20px;
+  }
+  .card .jp-term{ font-family:var(--serif); font-style:italic; color:var(--kin); font-size:20px; }
+  .card h3{ font-family:var(--serif); font-weight:500; font-size:21px; margin-top:4px; }
+  .card .card-sub{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#8a8072; margin-top:2px; margin-bottom:10px;}
+  .card p{ font-size:13.5px; font-weight:300; color:#5a5245; }
+
+  /* ---------- CLOSING ---------- */
+  .closing{ text-align:left; }
+  .closing .cta{
+    display:inline-block;
+    margin-top:28px;
+    padding:14px 34px;
+    border:1px solid var(--sumi);
+    font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+    font-family:var(--sans); font-weight:500;
+    color:var(--sumi); text-decoration:none;
+  }
+  .disclaimer{
+    margin-top:60px;
+    font-size:10.5px;
+    color:#a49a8b;
+    max-width:560px;
+    line-height:1.6;
+  }
+  .footer-mark{
+    text-align:center;
+    padding:40px 0 60px;
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--kin);
+    font-size:13px;
+    letter-spacing:0.05em;
+  }
+
+  /* Language toggle (screen only) */
+  .lang-toggle{
+    position:fixed; top:18px; right:18px; z-index:50;
+    background:var(--washi); border:1px solid var(--kin);
+    border-radius:20px; overflow:hidden; display:flex;
+    font-family:var(--sans); font-size:11px; letter-spacing:0.08em;
+  }
+  .lang-toggle button{
+    border:none; background:transparent; color:var(--sumi);
+    padding:8px 16px; cursor:pointer; font-family:var(--sans); font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .lang-toggle button.active{ background:var(--kin); color:var(--washi); }
+
+  [data-lang="es"]{ display:none; }
+  body.lang-es [data-lang="pt"]{ display:none; }
+  body.lang-es [data-lang="es"]{ display:block; }
+  body.lang-es .grid [data-lang="es"]{ display:block; }
+
+  @media (max-width:900px){
+    .page{ padding:10vw 7vw; }
+  }
+  @media (max-width:700px){
+    .grid{ grid-template-columns:1fr; gap:28px; }
+    .cover .kanji-big{ font-size:72px; }
+    .cover .brand{ font-size:32px; }
+    .cover .sub{ font-size:19px; }
+    .feature h2{ font-size:30px; }
+    .section-head h2{ font-size:26px; }
+    .page{ padding:16vw 7vw; }
+    .seal{ width:44px; height:44px; font-size:18px; top:5vw; right:5vw; }
+    .seal.bottom{ bottom:5vw; left:5vw; }
+    .lang-toggle{ top:12px; right:12px; }
+    .lang-toggle button{ padding:9px 14px; }
+    p.lede{ font-size:19px; }
+    .feature .origin-note{ font-size:13.5px; padding:14px 16px; }
+  }
+  @media (max-width:420px){
+    .cover .kanji-big{ font-size:58px; }
+    .cover .brand{ font-size:26px; }
+  }
+
+  @media print{
+    .lang-toggle{ display:none; }
+    .page{ page-break-after:always; padding:16mm 14mm; max-width:100%; }
+    .page:last-of-type{ page-break-after:auto; }
+    .cover{ min-height:100vh; }
+    .grid{ gap:20px 40px; }
+    .card p{ font-size:12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle" id="langToggle">
+  <button class="active" onclick="setLang('pt')">PT</button>
+  <button onclick="setLang('es')">ES</button>
+</div>
+
+<!-- ===================== COVER ===================== -->
+<section class="page cover">
+  <div class="kanji-big">肌</div>
+  <div class="brand">CS HADA<small>CAROL SAYURI</small></div>
+  <div class="sub" data-lang="pt">Pele &amp; Essência</div>
+  <div class="sub" data-lang="es">Piel &amp; Esencia</div>
+  <div class="byline" data-lang="pt">Catálogo de Rituais &amp; Protocolos
+    <span>Estética Natural &amp; Práticas Integrativas</span>
+  </div>
+  <div class="byline" data-lang="es">Catálogo de Rituales &amp; Protocolos
+    <span>Estética Natural &amp; Prácticas Integrativas</span>
+  </div>
+</section>
+
+<!-- ===================== MANIFESTO ===================== -->
+<section class="page">
+  <div class="seal">肌</div>
+  <div class="eyebrow" data-lang="pt">FILOSOFIA</div>
+  <div class="eyebrow" data-lang="es">FILOSOFÍA</div>
+  <h2 data-lang="pt">A beleza como Kaizen</h2>
+  <h2 data-lang="es">La belleza como Kaizen</h2>
+  <hr class="hr">
+  <p class="lede" data-lang="pt">Kaizen — 改善 — é o princípio japonês da melhoria contínua e gentil. Na CS HADA, a beleza é tratada da mesma forma: não como correção urgente, mas como cultivo constante.</p>
+  <p class="lede" data-lang="es">Kaizen — 改善 — es el principio japonés de la mejora continua y gentil. En CS HADA, la belleza se trata de la misma forma: no como corrección urgente, sino como cultivo constante.</p>
+  <p class="body-text" style="margin-top:22px" data-lang="pt">Cada ritual nasce do encontro entre a Estética Natural, as Práticas Integrativas, técnicas de origem asiática e os princípios da Terapia Ortomolecular. Acreditamos que pele, corpo e essência são um único texto — e que tratar um é sempre, também, escutar o outro. Este catálogo reúne os protocolos faciais e corporais desenvolvidos por Carol Sayuri: um convite a experimentar a estética como ritual, e não apenas como procedimento.</p>
+  <p class="body-text" style="margin-top:22px" data-lang="es">Cada ritual nace del encuentro entre la Estética Natural, las Prácticas Integrativas, técnicas de origen asiático y los principios de la Terapia Ortomolecular. Creemos que piel, cuerpo y esencia son un único texto — y que tratar uno es siempre, también, escuchar al otro. Este catálogo reúne los protocolos faciales y corporales desarrollados por Carol Sayuri: una invitación a experimentar la estética como ritual, y no solo como procedimiento.</p>
+</section>
+
+<!-- ===================== FACIAL INTRO ===================== -->
+<section class="page section-head">
+  <div class="eyebrow" data-lang="pt">RITUAIS FACIAIS</div>
+  <div class="eyebrow" data-lang="es">RITUALES FACIALES</div>
+  <h2 data-lang="pt">O rosto como retrato<br>do equilíbrio interno</h2>
+  <h2 data-lang="es">El rostro como retrato<br>del equilibrio interno</h2>
+  <hr class="hr">
+  <p class="body-text" data-lang="pt">Da purificação profunda aos protocolos especializados, cada ritual facial da CS HADA é pensado como camada — uma etapa de um processo maior de revelação da pele que já existe sob a superfície.</p>
+  <p class="body-text" data-lang="es">De la purificación profunda a los protocolos especializados, cada ritual facial de CS HADA está pensado como capa — una etapa de un proceso mayor de revelación de la piel que ya existe bajo la superficie.</p>
+</section>
+
+<!-- ===================== KIYOME ===================== -->
+<section class="page feature">
+  <div class="seal">清</div>
+  <div class="kicker" data-lang="pt">清め — purificação</div>
+  <div class="kicker" data-lang="es">清め — purificación</div>
+  <h2>Kiyome</h2>
+  <h3 data-lang="pt">Ritual de Purificação · Limpeza de Pele</h3>
+  <h3 data-lang="es">Ritual de Purificación · Limpieza de Piel</h3>
+  <p class="body-text" style="margin-top:20px" data-lang="pt">No Japão, kiyome é o gesto de purificar antes de um encontro sagrado. Aqui, é o primeiro passo de qualquer jornada de pele: uma limpeza profunda que remove impurezas, desobstrui os poros e devolve à pele sua capacidade de respirar. Mais do que estética, é preparo — a base sobre a qual todos os outros rituais se apoiam.</p>
+  <p class="body-text" style="margin-top:20px" data-lang="es">En Japón, kiyome es el gesto de purificar antes de un encuentro sagrado. Aquí, es el primer paso de cualquier viaje de piel: una limpieza profunda que remueve impurezas, desobstruye los poros y devuelve a la piel su capacidad de respirar. Más que estética, es preparación — la base sobre la que se apoyan todos los demás rituales.</p>
+</section>
+
+<!-- ===================== KAO SORI ===================== -->
+<section class="page feature">
+  <div class="seal">剃</div>
+  <div class="kicker" data-lang="pt">顔剃り — a esfoliação do rosto</div>
+  <div class="kicker" data-lang="es">顔剃り — la exfoliación del rostro</div>
+  <h2>Kao Sori</h2>
+  <h3 data-lang="pt">O Ritual Japonês de Renovação</h3>
+  <h3 data-lang="es">El Ritual Japonés de Renovación</h3>
+  <p class="body-text" style="margin-top:20px" data-lang="pt">Kao sori nasceu no Japão muito antes de se tornar tendência global — uma técnica de esfoliação física, feita com lâmina esterilizada, que remove células mortas e a fina penugem do rosto. O resultado é imediato: pele mais lisa, luminosa e receptiva aos cuidados que vêm a seguir, com um acabamento que a maquiagem agradece.</p>
+  <p class="body-text" style="margin-top:20px" data-lang="es">Kao sori nació en Japón mucho antes de convertirse en tendencia global — una técnica de exfoliación física, realizada con hoja esterilizada, que remueve células muertas y el vello fino del rostro. El resultado es inmediato: piel más lisa, luminosa y receptiva a los cuidados siguientes, con un acabado que el maquillaje agradece.</p>
+  <div class="origin-note" data-lang="pt">Resgatamos o nome original em respeito à origem da técnica — e porque, na CS HADA, cada gesto carrega sua própria história.</div>
+  <div class="origin-note" data-lang="es">Rescatamos el nombre original en respeto al origen de la técnica — y porque, en CS HADA, cada gesto lleva su propia historia.</div>
+</section>
+
+<!-- ===================== PROTOCOLOS ESPECIALIZADOS ===================== -->
+<section class="page">
+  <div class="seal">肌</div>
+  <div class="eyebrow" data-lang="pt">PROTOCOLOS ESPECIALIZADOS</div>
+  <div class="eyebrow" data-lang="es">PROTOCOLOS ESPECIALIZADOS</div>
+  <h2 data-lang="pt">Sete leituras para sete peles</h2>
+  <h2 data-lang="es">Siete lecturas para siete pieles</h2>
+  <hr class="hr">
+  <div class="grid">
+    <div class="card">
+      <div class="jp-term">Uruoi · 潤い</div>
+      <h3 data-lang="pt">Hidratação Profunda</h3><h3 data-lang="es">Hidratación Profunda</h3>
+      <div class="card-sub" data-lang="pt">Desidratação da pele</div><div class="card-sub" data-lang="es">Deshidratación de la piel</div>
+      <p data-lang="pt">Repõe o viço perdido, devolvendo à pele sua capacidade natural de reter água e luz.</p>
+      <p data-lang="es">Repone el brillo perdido, devolviendo a la piel su capacidad natural de retener agua y luz.</p>
+    </div>
+    <div class="card">
+      <div class="jp-term">Jun · 純</div>
+      <h3 data-lang="pt">Pele Livre</h3><h3 data-lang="es">Piel Libre</h3>
+      <div class="card-sub" data-lang="pt">Acne</div><div class="card-sub" data-lang="es">Acné</div>
+      <p data-lang="pt">Cuidado dedicado a peles com tendência à acne, com foco em equilíbrio e reconstrução da barreira cutânea.</p>
+      <p data-lang="es">Cuidado dedicado a pieles con tendencia al acné, enfocado en el equilibrio y la reconstrucción de la barrera cutánea.</p>
+    </div>
+    <div class="card">
+      <div class="jp-term">Nagi · 凪</div>
+      <h3 data-lang="pt">Calmaria</h3><h3 data-lang="es">Calma</h3>
+      <div class="card-sub" data-lang="pt">Rosácea</div><div class="card-sub" data-lang="es">Rosácea</div>
+      <p data-lang="pt">Inspirado no mar em calmaria, acalma vermelhidões e sensibilidades, devolvendo serenidade à pele.</p>
+      <p data-lang="es">Inspirado en el mar en calma, calma enrojecimientos y sensibilidades, devolviendo serenidad a la piel.</p>
+    </div>
+    <div class="card">
+      <div class="jp-term">Akari · 明かり</div>
+      <h3 data-lang="pt">Luminosidade</h3><h3 data-lang="es">Luminosidad</h3>
+      <div class="card-sub" data-lang="pt">Melasma</div><div class="card-sub" data-lang="es">Melasma</div>
+      <p data-lang="pt">Trabalha o aspecto de manchas e desigualdades de tom, revelando uma pele mais uniforme.</p>
+      <p data-lang="es">Trabaja el aspecto de manchas y desigualdades de tono, revelando una piel más uniforme.</p>
+    </div>
+    <div class="card">
+      <div class="jp-term">Toki · 時</div>
+      <h3 data-lang="pt">Sabedoria do Tempo</h3><h3 data-lang="es">Sabiduría del Tiempo</h3>
+      <div class="card-sub" data-lang="pt">Rugas e linhas de expressão</div><div class="card-sub" data-lang="es">Arrugas y líneas de expresión</div>
+      <p data-lang="pt">Não combate o tempo, dialoga com ele — suavizando linhas de expressão com respeito à história de cada rosto.</p>
+      <p data-lang="es">No combate el tiempo, dialoga con él — suavizando líneas de expresión con respeto a la historia de cada rostro.</p>
+    </div>
+    <div class="card">
+      <div class="jp-term">Hari · 張り</div>
+      <h3 data-lang="pt">Firmeza Renovada</h3><h3 data-lang="es">Firmeza Renovada</h3>
+      <div class="card-sub" data-lang="pt">Flacidez facial</div><div class="card-sub" data-lang="es">Flacidez facial</div>
+      <p data-lang="pt">Termo tradicional japonês de beleza que designa firmeza e viço — o objetivo deste protocolo.</p>
+      <p data-lang="es">Término tradicional japonés de belleza que designa firmeza y lozanía — el objetivo de este protocolo.</p>
+    </div>
+  </div>
+  <div style="margin-top:36px; max-width:600px;">
+    <div class="jp-term">Wakagaeri · 若返り</div>
+    <h3 data-lang="pt">Renascimento Facial</h3><h3 data-lang="es">Renacimiento Facial</h3>
+    <div class="card-sub" data-lang="pt">Rejuvenescimento</div><div class="card-sub" data-lang="es">Rejuvenecimiento</div>
+    <p data-lang="pt" style="font-size:13.5px; color:#5a5245;">Um ritual completo de revitalização, unindo técnicas manuais e ativos para um rosto que respira juventude.</p>
+    <p data-lang="es" style="font-size:13.5px; color:#5a5245;">Un ritual completo de revitalización, uniendo técnicas manuales y activos para un rostro que respira juventud.</p>
+  </div>
+</section>
+
+<!-- ===================== CORPORAL INTRO ===================== -->
+<section class="page section-head">
+  <div class="eyebrow" data-lang="pt">RITUAIS CORPORAIS</div>
+  <div class="eyebrow" data-lang="es">RITUALES CORPORALES</div>
+  <h2 data-lang="pt">O corpo escuta o que<br>a mente não diz</h2>
+  <h2 data-lang="es">El cuerpo escucha lo que<br>la mente no dice</h2>
+  <hr class="hr">
+  <p class="body-text" data-lang="pt">Quatro metodologias manuais, sem aparelhos, que tratam o corpo como um sistema integrado — onde intestino, fáscia, sistema nervoso e tecido adiposo conversam entre si.</p>
+  <p class="body-text" data-lang="es">Cuatro metodologías manuales, sin aparatos, que tratan el cuerpo como un sistema integrado — donde intestino, fascia, sistema nervioso y tejido adiposo conversan entre sí.</p>
+</section>
+
+<!-- ===================== NAGARE ===================== -->
+<section class="page feature">
+  <div class="seal">流</div>
+  <div class="kicker" data-lang="pt">流れ — fluxo</div>
+  <div class="kicker" data-lang="es">流れ — flujo</div>
+  <h2>Nagare</h2>
+  <h3 data-lang="pt">Ritual do Fluxo · Drenagem Linfática</h3>
+  <h3 data-lang="es">Ritual del Flujo · Drenaje Linfático</h3>
+  <p class="body-text" style="margin-top:20px" data-lang="pt">Manobras suaves e ritmadas que acompanham o curso natural da linfa, aliviando o inchaço, ativando a circulação e devolvendo ao corpo a sensação de leveza. Um ritual de escuta tanto quanto de técnica.</p>
+  <p class="body-text" style="margin-top:20px" data-lang="es">Maniobras suaves y rítmicas que acompañan el curso natural de la linfa, aliviando la hinchazón, activando la circulación y devolviendo al cuerpo la sensación de ligereza. Un ritual de escucha tanto como de técnica.</p>
+</section>
+
+<!-- ===================== KONPON ===================== -->
+<section class="page feature">
+  <div class="seal">根</div>
+  <div class="kicker" data-lang="pt">根本 — raiz, origem</div>
+  <div class="kicker" data-lang="es">根本 — raíz, origen</div>
+  <h2>Konpon</h2>
+  <h3 data-lang="pt">Estética que Nasce de Dentro</h3>
+  <h3 data-lang="es">Estética que Nace desde Dentro</h3>
+  <p class="body-text" style="margin-top:20px" data-lang="pt">Konpon une estética e modulação intestinal, partindo do princípio de que boa parte das disfunções estéticas corporais está ligada a desequilíbrios do trato gastrointestinal. É uma proposta que olha para celulites resistentes, flacidez crônica e inchaço sistêmico a partir da causa — não apenas do sintoma — buscando otimizar os resultados estéticos de dentro para fora.</p>
+  <p class="body-text" style="margin-top:20px" data-lang="es">Konpon une estética y modulación intestinal, partiendo del principio de que buena parte de las disfunciones estéticas corporales está ligada a desequilibrios del tracto gastrointestinal. Es una propuesta que aborda celulitis resistentes, flacidez crónica e hinchazón sistémica desde la causa — no solo el síntoma — buscando optimizar los resultados estéticos de dentro hacia fuera.</p>
+</section>
+
+<!-- ===================== KAIHO ===================== -->
+<section class="page feature">
+  <div class="seal">解</div>
+  <div class="kicker" data-lang="pt">解放 — liberação</div>
+  <div class="kicker" data-lang="es">解放 — liberación</div>
+  <h2>Kaihō</h2>
+  <h3 data-lang="pt">Toque de Liberação</h3>
+  <h3 data-lang="es">Toque de Liberación</h3>
+  <p class="body-text" style="margin-top:20px" data-lang="pt">Uma metodologia de toque que integra neurociência, anatomia funcional e terapia manual para acessar camadas teciduais profundas e restabelecer a comunicação entre o sistema nervoso e o corpo. Indicado especialmente para quem sente o corpo "travado" — padrões posturais compensados, tensões que não cedem a protocolos convencionais.</p>
+  <p class="body-text" style="margin-top:20px" data-lang="es">Una metodología de toque que integra neurociencia, anatomía funcional y terapia manual para acceder a capas tisulares profundas y restablecer la comunicación entre el sistema nervioso y el cuerpo. Indicado especialmente para quienes sienten el cuerpo "bloqueado" — patrones posturales compensados, tensiones que no ceden a protocolos convencionales.</p>
+</section>
+
+<!-- ===================== KATACHI ===================== -->
+<section class="page feature">
+  <div class="seal">形</div>
+  <div class="kicker" data-lang="pt">形 — forma</div>
+  <div class="kicker" data-lang="es">形 — forma</div>
+  <h2>Katachi</h2>
+  <h3 data-lang="pt">Reconfiguração Manual do Corpo</h3>
+  <h3 data-lang="es">Reconfiguración Manual del Cuerpo</h3>
+  <p class="body-text" style="margin-top:20px" data-lang="pt">Um método 100% manual que lê o real estado do tecido adiposo e o circuito que envolve mandíbula, diafragma, pelve, fáscia e sistema nervoso autônomo. Trabalha para destravar a mobilização da gordura localizada, melhorar a perfusão sanguínea e ajustar o corpo para sair do modo de defesa.</p>
+  <p class="body-text" style="margin-top:20px" data-lang="es">Un método 100% manual que lee el estado real del tejido adiposo y el circuito que involucra mandíbula, diafragma, pelvis, fascia y sistema nervioso autónomo. Trabaja para destrabar la movilización de la grasa localizada, mejorar la perfusión sanguínea y ajustar el cuerpo para salir del modo de defensa.</p>
+</section>
+
+<!-- ===================== CLOSING ===================== -->
+<section class="page closing">
+  <div class="seal">肌</div>
+  <div class="eyebrow" data-lang="pt">FORMAÇÃO &amp; ESSÊNCIA</div>
+  <div class="eyebrow" data-lang="es">FORMACIÓN &amp; ESENCIA</div>
+  <h2 data-lang="pt">Sobre Carol Sayuri</h2>
+  <h2 data-lang="es">Sobre Carol Sayuri</h2>
+  <hr class="hr">
+  <p class="body-text" data-lang="pt">Formada em Estética Natural, Práticas Integrativas, técnicas asiáticas e Terapia Ortomolecular, Carol Sayuri constrói a CS HADA como ponte entre sua ascendência japonesa e a estética contemporânea — onde cada protocolo é, antes de tudo, um ritual de presença.</p>
+  <p class="body-text" data-lang="es">Formada en Estética Natural, Prácticas Integrativas, técnicas asiáticas y Terapia Ortomolecular, Carol Sayuri construye CS HADA como puente entre su ascendencia japonesa y la estética contemporánea — donde cada protocolo es, ante todo, un ritual de presencia.</p>
+
+  <p style="font-family:var(--sans); font-size:14px; margin-top:22px; letter-spacing:0.04em; color:var(--kin);" data-lang="pt">Atendimentos exclusivos para mulheres.</p>
+  <p style="font-family:var(--sans); font-size:14px; margin-top:22px; letter-spacing:0.04em; color:var(--kin);" data-lang="es">Atenciones exclusivas para mujeres.</p>
+
+  <a href="https://wa.me/818064466535?text=Ol%C3%A1%2C%20Carol%21%20Vim%20pelo%20cat%C3%A1logo%20CS%20HADA%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" class="cta" data-lang="pt">Agende sua avaliação</a>
+  <a href="https://wa.me/818064466535?text=Ol%C3%A1%2C%20Carol%21%20Vim%20pelo%20cat%C3%A1logo%20CS%20HADA%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" class="cta" data-lang="es">Agenda tu evaluación</a>
+
+  <p class="disclaimer" data-lang="pt">Os rituais e protocolos apresentados são práticas de estética natural e integrativa, com abordagem complementar, e não substituem diagnóstico ou acompanhamento médico. Resultados variam conforme cada organismo.</p>
+  <p class="disclaimer" data-lang="es">Los rituales y protocolos presentados son prácticas de estética natural e integrativa, con enfoque complementario, y no sustituyen diagnóstico ni seguimiento médico. Los resultados varían según cada organismo.</p>
+</section>
+
+<div class="footer-mark">CS HADA 肌 — Pele &amp; Essência</div>
+
+<script>
+function setLang(l){
+  document.body.classList.toggle('lang-es', l==='es');
+  document.querySelectorAll('#langToggle button').forEach(b=>b.classList.remove('active'));
+  document.querySelector('#langToggle button[onclick*="'+l+'"]').classList.add('active');
+}
+</script>
+</body>
+</html>
